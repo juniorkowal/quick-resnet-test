@@ -6,7 +6,6 @@ import torch
 import torchvision
 from torchvision import transforms
 from tqdm import tqdm
-import hpim
 import copy
 import random
 import torch.nn.functional as F
@@ -98,8 +97,5 @@ if __name__ == "__main__":
             )
 
     model = torchvision.models.resnet50(weights="DEFAULT")
-    model_pim = copy.deepcopy(model)
-    model_pim = hpim.optimize(model_pim, mode='fx')
-
+    model.eval()
     accuracy(model)
-    accuracy(model_pim)
